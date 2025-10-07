@@ -4,3 +4,6 @@ from .models import Post
 def post_list(request):
     post_list = Post.objects.all()
     return render(request, 'blog/post_list.html', context={'posts': post_list})
+
+def index(request):
+    return render(request, 'blog/index.html')
