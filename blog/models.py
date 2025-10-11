@@ -6,4 +6,4 @@ class Post(models.Model):
     fecha_publicacion = models.DateTimeField(auto_now_add=True)
     
     def __str__(self):
-        return self.titulo, - self.titulo
+        return self.titulo
