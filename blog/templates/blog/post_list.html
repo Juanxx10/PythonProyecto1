@@ -4,12 +4,15 @@
     Publicaciones
 {% endblock %}
 
-{% block content_title %}
-    Lista de Publicaciones
-{% endblock content_title %}
-
 {% block content %}
-  <h1 class="mb-4 text-center">Lista de Publicaciones</h1>
+<h1 class="mb-4 text-center">Lista de Publicaciones</h1>
+<a href="{% url 'blog:post_create' %}" class='btn btn-primary mb-3'>Crear publicación</a>
+
+<form action="{% url 'blog:post_list' %}" method="get">
+  <input type="text" name="busqueda" placeholder="Buscar..." type="submit"
+  class="form-control mb-3">
+</form>
+
   <ul class="list-group">
     {% for post in posts %}
     <li class="list-group-item">
