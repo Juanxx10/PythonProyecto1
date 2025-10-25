@@ -32,6 +32,15 @@
           <li class="nav-item">
             <a class="nav-link" href="{% url 'blog:post_list' %}">Blog</a>
           </li>
+          {% if user.is_authenticated %}
+            <li class='naav-item'>
+                <a class="nav-link" href="{% url 'Main:editar_perfil' %}">
+                  {% if user.avatar.imagen  %}
+                    <img src="{{ user.avatar.imagen.url }}" alt="Avatar" class="rounded-circle border border-white shadow-sm" width="34" height="34">
+                  {% endif %} {{ user.username }}
+                </a>
+            <li>
+          {% endif %}
         </ul>
       </div>
     </div>

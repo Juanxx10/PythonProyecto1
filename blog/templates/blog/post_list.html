@@ -2,7 +2,7 @@
 
 {% block title %}
     Publicaciones
-{% endblock %}
+{% endblock title %}
 
 {% block content %}
 <h1 class="mb-4 text-center">Lista de Publicaciones</h1>
@@ -13,17 +13,35 @@
   class="form-control mb-3">
 </form>
 
-  <ul class="list-group">
-    {% for post in posts %}
-    <li class="list-group-item">
-      <a href="#" class="text-decoration-none text-reset">
-        <div class="d-flex flex-column">
-          <h5 class="fw-bold mb-1">{{ post.titulo }}</h5>
-          <p class="mb-1">{{ post.contenido }}</p>
-          <small class="text-muted">Publicado el {{ post.fecha_publicacion }}</small>
-        </div>
-      </a>
-    </li>
-    {% endfor %}
-  </ul>
+<div class="table-responsive">
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Titulo</th>
+        <th>Autor</th>
+        <th>Feha de publicación</th>
+        <th>Estado</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for post in posts %}
+        <tr>
+          <td>{{ post.titulo }}</td>
+          <td>{{ post.autor }}</td>
+          <td>{{ post.fecha_publicacion }}</td>
+          {% if post.estado == 'B' %}
+              <td>Borrador</td>
+          {% else %}
+              <td><strong>Publicado</strong></td>
+          {% endif %}
+          <td>
+            <a href="{% url 'blog:post_detail' post.id %}" class = 'btn btn-sm btn-info'>Detalle</a>
+            <a href="{% url 'blog:post_update' post.id %}" class = 'btn btn-sm btn-warning'>Cambiar</a>
+            <a href="{% url 'blog:post_delete' post.id %}" class = 'btn btn-sm btn-danger'>Eliminar</a>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
 {% endblock %}

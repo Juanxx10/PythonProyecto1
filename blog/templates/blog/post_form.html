@@ -2,11 +2,15 @@
 
 {% block title %}
     Publicar
-{% endblock %}
+{% endblock title %}
 
 {% block content_title %}
-    Formulario para crear una Publicación
-{% endblock %}
+    {% if form.instance.pk %}
+        Edición de una Publicación
+    {% else %}
+        Creación de una Publicación
+    {% endif %}
+{% endblock content_title %}
 
 {% block content %}
 <div class="container mt-4">
